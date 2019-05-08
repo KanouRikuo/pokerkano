@@ -2,24 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="ba948300-e5d1-47f9-80ec-a06339a98f96" name="iicidcj" comment="iicidcj">
-      <change afterPath="$PROJECT_DIR$/app/assets/stylesheets/custom.css.scss.sass" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/test/integration/users_signup_test.rb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
-    <list id="6f704008-a1be-4d3f-8e98-50e908783143" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.env.dev" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/codeStyles/codeStyleConfig.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/profiles_settings.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Dockerfile" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/assets/views/pages/index.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/controllers/concerns/module.rb" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/forms/card_form.rb" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/services/judge_service.rb" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/services/validates_service.rb" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/views/posts/complete.html.erb" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/docker-compose.yml" afterDir="false" />
-    </list>
+    <list id="6f704008-a1be-4d3f-8e98-50e908783143" name="Default Changelist" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -95,7 +80,7 @@
           <entry key="js" value="1" />
           <entry key="rb" value="8677" />
           <entry key="sass" value="141" />
-          <entry key="scss" value="319" />
+          <entry key="scss" value="321" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
@@ -105,7 +90,7 @@
           <entry key="RHTML" value="1852" />
           <entry key="RegExp" value="2" />
           <entry key="Ruby" value="8730" />
-          <entry key="SCSS" value="319" />
+          <entry key="SCSS" value="321" />
           <entry key="Sass" value="141" />
         </counts>
       </usages-collector>
@@ -173,8 +158,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/assets/stylesheets/posts.scss">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="414">
-              <caret line="35" column="1" lean-forward="true" selection-start-line="35" selection-start-column="1" selection-end-line="35" selection-end-column="1" />
+            <state relative-caret-position="267">
+              <caret line="23" lean-forward="true" selection-start-line="23" selection-end-line="23" />
             </state>
           </provider>
         </entry>
@@ -662,14 +647,14 @@
       <option name="presentableId" value="LOCAL-00001" />
       <option name="project" value="LOCAL" />
       <updated>1556599055387</updated>
-      <workItem from="1556599055686" duration="39365000" />
+      <workItem from="1556599055686" duration="40100000" />
     </task>
     <option name="localTasksCounter" value="2" />
     <option name="createBranch" value="false" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="173479000" />
+    <option name="totallyTimeSpent" value="174214000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -682,6 +667,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1440" height="900" extended-state="0" />
+    <editor active="true" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" sideWeight="0.49819058" visible="true" weight="0.26895565" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
@@ -1011,8 +997,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/assets/stylesheets/posts.scss">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="414">
-          <caret line="35" column="1" lean-forward="true" selection-start-line="35" selection-start-column="1" selection-end-line="35" selection-end-column="1" />
+        <state relative-caret-position="267">
+          <caret line="23" lean-forward="true" selection-start-line="23" selection-end-line="23" />
         </state>
       </provider>
     </entry>
