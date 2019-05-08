@@ -2,100 +2,49 @@ class JudgeService
 
   def initialize(card1)
 
+    num = card1.split
+    number_0 = num[0].match(/\d+/)
+    number_1 = num[1].match(/\d+/)
+    number_2 = num[2].match(/\d+/)
+    number_3 = num[3].match(/\d+/)
+    number_4 = num[4].match(/\d+/)
+    @number = "#{number_0} #{number_1} #{number_2} #{number_3} #{number_4}"
+    @numbers = @number.split.map!(&:to_i).sort!.reverse!
+
+
     chr = card1.split
-    number_a = chr[0].match(/\d+/)
-    number_b = chr[1].match(/\d+/)
-    number_c = chr[2].match(/\d+/)
-    number_d = chr[3].match(/\d+/)
-    number_e = chr[4].match(/\d+/)
-    @number = "#{number_a} #{number_b} #{number_c} #{number_d} #{number_e}"
-    @number_x = @number.split.map!(&:to_i).sort!.reverse!
+    chr_0 = chr[0].match(/[SHDC]/)
+    chr_1 = chr[1].match(/[SHDC]/)
+    chr_2 = chr[2].match(/[SHDC]/)
+    chr_3 = chr[3].match(/[SHDC]/)
+    chr_4 = chr[4].match(/[SHDC]/)
+    chr = "#{chr_0} #{chr_1} #{chr_2} #{chr_3} #{chr_4}"
+    @characters = chr.split
 
-
-    str = card1.split
-    chr_a = str[0].match(/[SHDC]/)
-    chr_b = str[1].match(/[SHDC]/)
-    chr_c = str[2].match(/[SHDC]/)
-    chr_d = str[3].match(/[SHDC]/)
-    chr_e = str[4].match(/[SHDC]/)
-    chr = "#{chr_a} #{chr_b} #{chr_c} #{chr_d} #{chr_e}"
-    @suit = chr.split
-
-    @number_of_sets_a = @number_x.each_with_object(Hash.new(0)){|v,o| o[v]+=1}
-    @number_of_sets_b = @number_of_sets_a.each_with_object([]) do |(key, val), arr|
+    number_of_sets_a = @numbers.each_with_object(Hash.new(0)) {|number, overlap| overlap[number] += 1}
+    number_of_sets_b = number_of_sets_a.each_with_object([]) do |(key, val), arr|
       arr << val
 
     end
 
-    @number_of_sets_c = @number_of_sets_b.sort.reverse
+    @number_of_sets_c = number_of_sets_b.sort.reverse
 
-    p "@number_x"
-    p @number_x
-    p "@number_of_sets_a"
-    p @number_of_sets_a
-    p "@number_of_sets_b"
-    p @number_of_sets_b
-    p "@number_of_sets_c"
-    p @number_of_sets_c
 
   end
 
   def birds
 
-    character1(@suit)
-    number1
-    number2
-    number3
-    number4
-    number5
-    number6
+    flush?(@characters)
 
-    p "@straightccc"
-    p @straight
-    p "@flushccc"
-    p @flush
+    straight?
 
-     @result = ""
-
-    if @straight == true && @flush == true
-
-      @result = "ストレートフラッシュ"
-
-      elsif @straight == false && @flush == false && @number_of_sets_c == [4, 1]
-      @result = "フォー・オブ・ア・カインド"
-
-
-      elsif @straight == false && @flush == false && @number_of_sets_c == [3, 2]
-      @result = "フルハウス"
-
-      elsif @straight == false && @flush == true
-      @result = "フラッシュ"
-
-      elsif @straight == true && @flush == false && @number_of_sets_c == [1, 1, 1, 1, 1]
-      @result = "ストレート"
-
-      elsif @straight == false && @flush == false && @number_of_sets_c == [3, 1, 1]
-      @result = "スリー・オブ・ア・カインド"
-
-      elsif @straight == false && @flush == false && @number_of_sets_c == [2, 2, 1]
-      @result = "ツーペア"
-
-      elsif @straight == false && @flush == false && @number_of_sets_c == [2, 1, 1, 1]
-      @result = "ワンペア"
-
-    else
-
-      @result = "ハイカード"
-
-
-    end
-
-    p @result
+    judge
 
   end
 
+  private
 
-  def character1(char)
+  def flush?(char)
 
     if char[0] == char[1] && char[1] == char[2] && char[2] == char[3] && char[3] == char[4]
       @flush = true
@@ -105,45 +54,14 @@ class JudgeService
 
   end
 
-  def number1
-    if @number_of_sets_c == [3,2]
-      @straight = false
-    end
 
-  end
-
-  def number2
-    if @number_of_sets_c == [3,1,1]
-      @straight = false
-    end
-  end
-
-  def number3
-    if @number_of_sets_c == [2,2,1]
-      @straight = false
-    end
-  end
-
-  def number4
-    if @number_of_sets_c　== [2,1,1,1]
-      @straight = false
-    end
-  end
-
-  def number5
-    if @number_of_sets_c == [4,1]
-      @straight = false
-    end
-  end
-
-  def number6
+  def straight?
     a = []
     4.times do |j|
-      a.push("#{@number_x[j]- @number_x[j+1]}")
-      p "a"
-      p a
+      a.push("#{@numbers[j] - @numbers[j + 1]}")
+
     end
-    if a == ["1","1","1","1"]
+    if a == ["1", "1", "1", "1"]
       @straight = true
     else
       @straight = false
@@ -152,8 +70,27 @@ class JudgeService
 
   end
 
-  def animal
+  def judge
+  case @result
 
-    end
-
+  when "ストレートフラッシュ" then
+    @straight == true && @flush == true
+  when "フォー・オブ・ア・カインド" then
+    @straight == false && @flush == false && @number_of_sets_c == [4, 1]
+  when "フルハウス" then
+    @straight == false && @flush == false && @number_of_sets_c == [3, 2]
+  when "フラッシュ" then
+    @straight == false && @flush == true
+  when "ストレート" then
+    @straight == true && @flush == false && @number_of_sets_c == [1, 1, 1, 1, 1]
+  when "スリー・オブ・ア・カインド" then
+    @straight == false && @flush == false && @number_of_sets_c == [3, 1, 1]
+  when "ツーペア" then
+    @straight == false && @flush == false && @number_of_sets_c == [2, 2, 1]
+  when "ワンペア" then
+    @straight == false && @flush == false && @number_of_sets_c == [2, 1, 1, 1]
+  else
+    "ハイカード"
   end
+end
+end
