@@ -3,34 +3,17 @@ class PostsController < ApplicationController
   include ValidatesService
 
   def index
-    # @content1 = CardForm.new(params[:card])
-    # p "@content1.cards"
-    # p @content1.cards
-    # p "@content1"
-    # p @content1
-    #
-    # if valid1(@content1.cards) && valid2(@content1.cards) && valid3(@content1.cards)
-    #   @content2 = JudgeService.new(@content1.cards)
-    #   flash.now[:notice] = "#{@content2.birds}"
-    #   # redirect_to :action => "index"
-    #   render "index"
-    # else
-    #   render "index"
-    # end
-    end
+
+  end
 
   def complete
 
     @content1 = CardForm.new(params[:card])
-    p "@content1.cards"
-    p @content1.cards
-    p "@content1"
-    p @content1
+
 
     if valid1(@content1.cards) && valid2(@content1.cards) && valid3(@content1.cards)
       @content2 = JudgeService.new(@content1.cards)
       flash.now[:notice] = "#{@content2.birds}"
-      # redirect_to :action => "index"
       render "index"
     else
       render "index"
@@ -39,7 +22,6 @@ class PostsController < ApplicationController
 
   end
 end
-
 
 
 # 質問

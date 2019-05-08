@@ -21,7 +21,7 @@ class JudgeService
     chr = "#{chr_a} #{chr_b} #{chr_c} #{chr_d} #{chr_e}"
     @suit = chr.split
 
-    @number_of_sets_a = @number_x.each_with_object(Hash.new(0)){|v,o| o[v]+=1}
+    @number_of_sets_a = @number_x.each_with_object(Hash.new(0)) {|v, o| o[v] += 1}
     @number_of_sets_b = @number_of_sets_a.each_with_object([]) do |(key, val), arr|
       arr << val
 
@@ -29,14 +29,6 @@ class JudgeService
 
     @number_of_sets_c = @number_of_sets_b.sort.reverse
 
-    p "@number_x"
-    p @number_x
-    p "@number_of_sets_a"
-    p @number_of_sets_a
-    p "@number_of_sets_b"
-    p @number_of_sets_b
-    p "@number_of_sets_c"
-    p @number_of_sets_c
 
   end
 
@@ -50,37 +42,33 @@ class JudgeService
     number5
     number6
 
-    p "@straightccc"
-    p @straight
-    p "@flushccc"
-    p @flush
 
-     @result = ""
+    @result = ""
 
     if @straight == true && @flush == true
 
       @result = "ストレートフラッシュ"
 
-      elsif @straight == false && @flush == false && @number_of_sets_c == [4, 1]
+    elsif @straight == false && @flush == false && @number_of_sets_c == [4, 1]
       @result = "フォー・オブ・ア・カインド"
 
 
-      elsif @straight == false && @flush == false && @number_of_sets_c == [3, 2]
+    elsif @straight == false && @flush == false && @number_of_sets_c == [3, 2]
       @result = "フルハウス"
 
-      elsif @straight == false && @flush == true
+    elsif @straight == false && @flush == true
       @result = "フラッシュ"
 
-      elsif @straight == true && @flush == false && @number_of_sets_c == [1, 1, 1, 1, 1]
+    elsif @straight == true && @flush == false && @number_of_sets_c == [1, 1, 1, 1, 1]
       @result = "ストレート"
 
-      elsif @straight == false && @flush == false && @number_of_sets_c == [3, 1, 1]
+    elsif @straight == false && @flush == false && @number_of_sets_c == [3, 1, 1]
       @result = "スリー・オブ・ア・カインド"
 
-      elsif @straight == false && @flush == false && @number_of_sets_c == [2, 2, 1]
+    elsif @straight == false && @flush == false && @number_of_sets_c == [2, 2, 1]
       @result = "ツーペア"
 
-      elsif @straight == false && @flush == false && @number_of_sets_c == [2, 1, 1, 1]
+    elsif @straight == false && @flush == false && @number_of_sets_c == [2, 1, 1, 1]
       @result = "ワンペア"
 
     else
@@ -90,7 +78,7 @@ class JudgeService
 
     end
 
-    p @result
+
 
   end
 
@@ -106,32 +94,32 @@ class JudgeService
   end
 
   def number1
-    if @number_of_sets_c == [3,2]
+    if @number_of_sets_c == [3, 2]
       @straight = false
     end
 
   end
 
   def number2
-    if @number_of_sets_c == [3,1,1]
+    if @number_of_sets_c == [3, 1, 1]
       @straight = false
     end
   end
 
   def number3
-    if @number_of_sets_c == [2,2,1]
+    if @number_of_sets_c == [2, 2, 1]
       @straight = false
     end
   end
 
   def number4
-    if @number_of_sets_c　== [2,1,1,1]
+    if @number_of_sets_c　 == [2, 1, 1, 1]
       @straight = false
     end
   end
 
   def number5
-    if @number_of_sets_c == [4,1]
+    if @number_of_sets_c == [4, 1]
       @straight = false
     end
   end
@@ -139,11 +127,10 @@ class JudgeService
   def number6
     a = []
     4.times do |j|
-      a.push("#{@number_x[j]- @number_x[j+1]}")
-      p "a"
-      p a
+      a.push("#{@number_x[j] - @number_x[j + 1]}")
+
     end
-    if a == ["1","1","1","1"]
+    if a == ["1", "1", "1", "1"]
       @straight = true
     else
       @straight = false
@@ -152,8 +139,4 @@ class JudgeService
 
   end
 
-  def animal
-
-    end
-
-  end
+end
