@@ -10,17 +10,20 @@ class PostsController < ApplicationController
 
     @content1 = CardForm.new(params[:card])
 
-
+    p "@content1.cards"
+    p @content1.cards
     if valid1(@content1.cards) && valid2(@content1.cards) && valid3(@content1.cards)
       @content2 = JudgeService.new(@content1.cards)
       flash.now[:notice] = "#{@content2.birds}"
       render "index"
     else
+      flash.now[:notice] = "#{@error}"
       render "index"
     end
 
-
   end
+
+
 end
 
 
