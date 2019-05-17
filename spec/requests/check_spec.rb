@@ -14,12 +14,12 @@ RSpec.describe "Check", type: :request do
 
       it '期待する役および最も強い手札が判定されていること' do
         json_body = JSON.parse(response.body)
-        expect(json_body["@result_list"][0]["card_set"]).to eq 'C7 C6 C5 C4 C3'
-        expect(json_body["@result_list"][0]["hand"]).to eq 'ストレートフラッシュ'
-        expect(json_body["@result_list"][0]["best"]).to eq true
-        expect(json_body["@result_list"][1]["card_set"]).to eq 'D1 D10 S9 C5 C4'
-        expect(json_body["@result_list"][1]["hand"]).to eq 'ハイカード'
-        expect(json_body["@result_list"][1]["best"]).to eq false
+        expect(json_body[0]["cards"]["card_set"]).to eq 'C7 C6 C5 C4 C3'
+        expect(json_body[0]["cards"]["result"]).to eq 'ストレートフラッシュ'
+        expect(json_body[0]["cards"]["best"]).to eq true
+        expect(json_body[1]["cards"]["card_set"]).to eq 'D1 D10 S9 C5 C4'
+        expect(json_body[1]["cards"]["result"]).to eq 'ハイカード'
+        expect(json_body[1]["cards"]["best"]).to eq false
       end
 
     end
@@ -36,10 +36,10 @@ RSpec.describe "Check", type: :request do
 
       it '期待するエラーメッセージが格納されていること' do
         json_body = JSON.parse(response.body)
-        expect(json_body["@result_list"][0]["card_set"]).to eq 'C7 C6 C5 C4 C3 C2'
-        expect(json_body["@result_list"][0]["error"]).to eq '手札の情報が不正です。手札の情報を正確に入力してください。（例：S8 S7 H6 H5 S4）'
-        expect(json_body["@result_list"][1]["card_set"]).to eq ''
-        expect(json_body["@result_list"][1]["error"]).to eq '手札の情報が入力されていません。手札の情報を入力してください。（例：S8 S7 H6 H5 S4）'
+        expect(json_body[0]["error"]["card_set"]).to eq 'C7 C6 C5 C4 C3 C2'
+        expect(json_body[0]["error"]["error"]).to eq "5つのカード指定文字を半角スペース区切りで入力してください.（例：S1 H3 D9 C13 S11）"
+        expect(json_body[1]["error"]["card_set"]).to eq ''
+        expect(json_body[1]["error"]["error"]).to eq "5つのカード指定文字を半角スペース区切りで入力してください.（例：S1 H3 D9 C13 S11）"
       end
 
     end
@@ -56,7 +56,7 @@ RSpec.describe "Check", type: :request do
 
       it '期待するエラーメッセージが格納されていること' do
         json_body = JSON.parse(response.body)
-        expect(json_body["@result_list"]).to eq '404 Not Found：指定されたURLは存在しません'
+        expect(json_body["error"]).to eq '404 Not Found：指定されたURLは存在しません'
       end
 
     end

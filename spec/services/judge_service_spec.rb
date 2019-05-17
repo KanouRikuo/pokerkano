@@ -5,11 +5,13 @@ describe JudgeService do
 
       it 'flush?を行うとき判定がtrueであること' do
         service = JudgeService.new('H1 H12 H10 H5 H3')
+        service.birds
         characters = service.instance_variable_get('@characters')
         expect(service.flush?(characters)).to eq true
       end
       it 'flush?を行うとき判定がfalseであること' do
         service = JudgeService.new('C7 C6 C5 C4 H3')
+        service.birds
         characters = service.instance_variable_get('@characters')
         expect(service.flush?(characters)).to eq false
       end
@@ -17,11 +19,12 @@ describe JudgeService do
 
       it 'straight?を行うとき判定がtrueであること' do
         service = JudgeService.new('S8 S7 H6 H5 S4')
-
+        service.birds
         expect(service.straight?).to eq true
       end
       it 'straight?を行うとき判定がfalseであること' do
         service = JudgeService.new('S9 S7 H6 H5 S4')
+        service.birds
         expect(service.straight?).to eq false
       end
 

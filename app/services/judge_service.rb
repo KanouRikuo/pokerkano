@@ -50,35 +50,6 @@ class JudgeService
       judge_score
     end
 
-    class << self
-      # def judge_strongest(cards)
-      #   judge_best(cards)
-      # end
-
-      # private
-      def judge_best(cards)
-        scores = []
-
-        cards.each do |card|
-          scores.push card.strength
-        end
-
-        high_score =  scores.max
-
-        cards.each do |card|
-          if card.strength == high_score
-            card.best = true
-          else
-            card.best = false
-          end
-
-        end
-
-      end
-    end
-
-
-
 
   def flush?(char)
 
@@ -143,6 +114,37 @@ class JudgeService
       @result = "ハイカード"
     end
   end
+
+
+  class << self
+      # def judge_strongest(cards)
+      #   judge_best(cards)
+      # end
+
+      # private
+      def judge_best(cards)
+        scores = []
+
+        cards.each do |card|
+          scores.push card.strength
+        end
+
+        high_score =  scores.max
+
+        cards.each do |card|
+          if card.strength == high_score
+            card.best = true
+          else
+            card.best = false
+          end
+
+        end
+
+      end
+    end
+
+
+
 
 
 
