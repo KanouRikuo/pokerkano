@@ -1,4 +1,4 @@
-require_relative 'boot'
+# require_relative 'boot'
 
 require 'rails/all'
 
@@ -17,5 +17,17 @@ module Pokerkano
     # the framework and any gems in your application.
     #
     # config.eager_load_paths += Dir["#{Rails.root}/*"]
+
+    # APIの読み込み
+    config.paths.add File.join('app', 'apis'), glob: File.join('**', '*.rb')
+    config.autoload_paths += Dir[Rails.root.join('app', 'apis', '*')]
+
+    # # Grape+JBuilderを使うための設定
+    config.middleware.use(Rack::Config) do |env|
+      env['api.tilt.root'] = Rails.root.join 'app', 'views', 'api'
+    end
+
   end
-end
+  end
+
+

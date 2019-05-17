@@ -1,43 +1,81 @@
 class JudgeService
+  include ValidatesService
+  # attr_accessor :card, :hand, :best, :number, :msg
+  POKER_HAND = ["ハイカード", "ワンペア", "ツーペア", "スリー・オブ・ア・カインド",
+                "ストレート", "フラッシュ", "フルハウス", "フォー・オブ・ア・カインド", "ストレートフラッシュ"]
 
-  def initialize(card1)
-p "card1"
-p card1
-    num = card1.split
-    number_0 = num[0].match(/\d+/)
-    number_1 = num[1].match(/\d+/)
-    number_2 = num[2].match(/\d+/)
-    number_3 = num[3].match(/\d+/)
-    number_4 = num[4].match(/\d+/)
-    @number = "#{number_0} #{number_1} #{number_2} #{number_3} #{number_4}"
-    @numbers = @number.split.map!(&:to_i).sort!.reverse!
+  attr_accessor :card, :best, :strength, :hand, :result, :card_set
 
-    number_of_sets_a = @numbers.each_with_object(Hash.new(0)) {|number, overlap| overlap[number] += 1}
-    number_of_sets_b = number_of_sets_a.each_with_object([]) do |(key, val), arr|
-      arr << val
+  def initialize(card_set)
+    @card_set = card_set
+  end
+
+    def birds
+
+      card = @card_set.split
+      number_0 = card[0].match(/\d+/)
+      number_1 = card[1].match(/\d+/)
+      number_2 = card[2].match(/\d+/)
+      number_3 = card[3].match(/\d+/)
+      number_4 = card[4].match(/\d+/)
+      @number = "#{number_0} #{number_1} #{number_2} #{number_3} #{number_4}"
+      @numbers = @number.split.map!(&:to_i).sort!.reverse!
+
+      number_of_sets_a = @numbers.each_with_object(Hash.new(0)) {|number, overlap| overlap[number] += 1}
+      number_of_sets_b = number_of_sets_a.each_with_object([]) do |(key, val), arr|
+        arr << val
+      end
+      @number_of_sets_c = number_of_sets_b.sort.reverse
+
+      chr_0 = card[0].match(/[SHDC]/)
+      chr_1 = card[1].match(/[SHDC]/)
+      chr_2 = card[2].match(/[SHDC]/)
+      chr_3 = card[3].match(/[SHDC]/)
+      chr_4 = card[4].match(/[SHDC]/)
+      @character = "#{chr_0} #{chr_1} #{chr_2} #{chr_3} #{chr_4}"
+      @characters = @character.split
+
+      flush?(@characters)
+      straight?
+      judge
+
     end
-    @number_of_sets_c = number_of_sets_b.sort.reverse
 
-    chr = card1.split
-    chr_0 = chr[0].match(/[SHDC]/)
-    chr_1 = chr[1].match(/[SHDC]/)
-    chr_2 = chr[2].match(/[SHDC]/)
-    chr_3 = chr[3].match(/[SHDC]/)
-    chr_4 = chr[4].match(/[SHDC]/)
-    chr = "#{chr_0} #{chr_1} #{chr_2} #{chr_3} #{chr_4}"
-    @characters = chr.split
+    def judge_score()
+      @strength = POKER_HAND.index(@result)
+    end
 
-    p "@characters"
-    p @characters
-  end
+    def judge_strength
+      birds
+      judge_score
+    end
 
-  def birds
+    class << self
+      # def judge_strongest(cards)
+      #   judge_best(cards)
+      # end
 
-    flush?(@characters)
-    straight?
-    judge
+      # private
+      def judge_best(cards)
+        scores = []
 
-  end
+        cards.each do |card|
+          scores.push card.strength
+        end
+
+        high_score =  scores.max
+
+        cards.each do |card|
+          if card.strength == high_score
+            card.best = true
+          else
+            card.best = false
+          end
+
+        end
+
+      end
+    end
 
 
 
@@ -69,8 +107,6 @@ p card1
 
   def judge
 
-    p @straight
-    p @flush
 
     if @straight == true && @flush == true
       @result = "ストレートフラッシュ"
@@ -106,6 +142,12 @@ p card1
     else
       @result = "ハイカード"
     end
+  end
+
+
+
+
+
 
 
   #   case @result
@@ -134,5 +176,4 @@ p card1
   end
 
 
-end
 
